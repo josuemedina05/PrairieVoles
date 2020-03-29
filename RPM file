@@ -16,7 +16,7 @@ elapse = 0
 
 start = time.time()
 
-GPIO.setup(hall,GPIO.IN, pull_up_down=GPIO.PUD.UP)
+GPIO.setup(hall,GPIO.IN,pull_up_down=GPIO.PUD.UP)
 
 def get_rpm():
   return rpm
