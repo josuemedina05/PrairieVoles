@@ -1,0 +1,15 @@
+import RP.GPIO as GPIO
+import time
+
+GPIO.setmode(GPIO.BCM)
+GPIO.setwarnings(false)
+
+pulse = 0
+distance = 0
+rpm = 0
+speed = 0
+r = 0.12
+wheel_c = 2*pi*r
+multiplier = 0
+hall = 18
+elapse = 0
