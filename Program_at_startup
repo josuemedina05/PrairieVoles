@@ -1,0 +1,4 @@
+Command window
+  type: sudo Contrab -e
+    #at bottom of screen type:
+  @reboot python /home/pi/Desktop/SeniorDesign/PrairieVole.py &
