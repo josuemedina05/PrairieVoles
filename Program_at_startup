@@ -1,4 +1,4 @@
 Command window
-  type: sudo Contrab -e
+  type: sudo Crontab -e
     #at bottom of screen type:
   @reboot python /home/pi/Desktop/SeniorDesign/PrairieVole.py &
