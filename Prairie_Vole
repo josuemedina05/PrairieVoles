@@ -16,74 +16,74 @@ def generate_data():
 	"""
 		Logic to return final distance
 	"""
-	import RP.GPIO as GPIO
-	import time
+import RP.GPIO as GPIO
+import time
 
-	GPIO.setmode(GPIO.BCM)
-	GPIO.setwarnings(false)
+GPIO.setmode(GPIO.BCM)
+GPIO.setwarnings(false)
 
-	pulse = 0
-	distance = 0
-	rpm = 0
-	speed = 0
-	r = 0.12
-	wheel_c = 2*pi*r
-	multiplier = 0
-	hall = 18
-	elapse = 0
+pulse = 0
+distance = 0
+rpm = 0
+speed = 0
+r = 0.12
+wheel_c = 2*pi*r
+multiplier = 0
+hall = 18
+elapse = 0
 
+start = time.time()
+
+GPIO.setup(hall,GPIO.IN,pull_up_down=GPIO.PUD.UP)
+
+def get_rpm():
+	return rpm
+def get_distance():
+	return speed
+def get_distance():
+	return distance
+def get_elapse():
+	return elapse
+def get_multiplier():
+	return multiplier
+def get_pulse(number):
+
+	global elapse,distance,start,pulse,speed,rpm,multiplier
+
+	cycle = 0
+	pulse += 1
+	cylce += 1
+	if pulse > 0:
+		elapse = time.time() - start
+		pulse -= 1
+	if cycle > 0:
+		distance += wheel_c
+		cycle -= 1
+	  
+	multiplier = 3600/elapse
+	speed = (wheel_c*multiplier)/1000
+	rpm = 1/elapse*60
+	  
 	start = time.time()
 
-	GPIO.setup(hall,GPIO.IN,pull_up_down=GPIO.PUD.UP)
-
-	def get_rpm():
-	  return rpm
-	def get_distance():
-	  return speed
-	def get_distance():
-	  return distance
-	def get_elapse():
-	  return elapse
-	def get_multiplier():
-	  return multiplier
-	def get_pulse(number):
-
-	  global elapse,distance,start,pulse,speed,rpm,multiplier
-
-	  cycle = 0
-	  pulse += 1
-	  cylce += 1
-	  if pulse > 0:
-	    elapse = time.time() - start
-	    pulse -= 1
-	  if cycle > 0:
-	    distance += wheel_c
-	    cycle -= 1
+try:
+	print('Inializing speedometer')
+	time.sleep(1)
 	  
-	  multiplier = 3600/elapse
-	  speed = (wheel_c*multiplier)/1000
-	  rpm = 1/elapse*60
+	GPIO.add_event_detect(hall,GPIO.FALLING,callback = get_pulse,bouncetime=20)
 	  
-	  start = time.time()
-
-	try:
-	  print('Inializing speedometer')
-	  time.sleep(1)
-	  
-	  GPIO.add_event_detect(hall,GPIO.FALLING,callback = get_pulse,bouncetime=20)
-	  
-	  while True:
-	    print('rpm{0:.2f} speed{1:.2f} distance{2} elapse{3:.4f} multiplier{4:.2f}'.format(rpm,speed,distance,elapse,multiplier))
-	    time.sleep(0.1)
-      if speed < 1:
-        def get_distance():
-	  		  return distance
-        print(distance,'Meters')
-        break
+	while True:
+		print('rpm{0:.2f} speed{1:.2f} distance{2} elapse{3:.4f} multiplier{4:.2f}'.format(rpm,speed,distance,elapse,multiplier))
+		time.sleep(0.1)
+      		if speed < 1:
+        		def get_distance():
+				return distance
+        		print(distance,'Meters')
+        		break
         
-	except KeyboardInterrupt:
-		print('End of program')
-	    GPIO.cleanup()
+except KeyboardInterrupt:
+	print('End of program')
+	GPIO.cleanup()
 
 
 def write_to_job(): 
