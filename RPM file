@@ -63,9 +63,9 @@ try:
 	  
 	while True:
 		if GPIO.input(channel):
-    print('Input was HIGH')
-else:
-    print('Input was LOW')
+    			print('Input was HIGH')
+		else:
+    			print('Input was LOW')
 		print('rpm{0:.2f} speed{1:.2f} distance{2} elapse{3:.4f} multiplier{4:.2f}'.format(rpm,speed,distance,elapse,multiplier))
 		time.sleep(0.1)
       		if speed < 1:
