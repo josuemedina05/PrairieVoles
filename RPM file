@@ -14,7 +14,6 @@ multiplier = 0
 hall = 18
 elapse = 0
 
-start = time.time()
 
 GPIO.setup(hall,GPIO.IN,pull_up_down=GPIO.PUD.UP)
 
@@ -39,35 +38,24 @@ def handle_rising_edge():
 	
 
 def get_pulse(number):
-	global elapse,distance,start,pulse,speed,rpm,multiplier
+	start = time.time()
+	distance += wheel_c
 	
-	elapse = time.time() - start
-	
-	if GPIO.event_detected(hall):
-		print("FALLING EDGE")
-		handle_falling_edge()
-	else:
-		print("RISING EDGE")
-		handle_rising_edge()
-	
-	global elapse,distance,start,pulse,speed,rpm,multiplier
-	elapse = time.time() - start  
-	multiplier = 3600/elapse
-	rpm = 1/elapse*60
-	speed = (wheel_c*multiplier)/(1000)
 	
 
 try:
 	print('Inializing speedometer')
 	time.sleep(1)
-	  
-	GPIO.add_event_detect(hall,GPIO.BOTH,callback = get_pulse,bouncetime=20)
+	
+	start = time.time()	  
+	GPIO.add_event_detect(hall,GPIO.FALLING,callback = get_pulse,bouncetime=20)
 	  
 	while True:
-		if GPIO.input(channel):
-    			print('Input was HIGH')
-		else:
-    			print('Input was LOW')
+		elapse = time.time() - start  
+		multiplier = 3600/elapse
+		rpm = 1/elapse*60
+		speed = (wheel_c*multiplier)/(1000)
+			
 		print('rpm{0:.2f} speed{1:.2f} distance{2} elapse{3:.4f} multiplier{4:.2f}'.format(rpm,speed,distance,elapse,multiplier))
 		time.sleep(0.1)
       		if speed < 1:
