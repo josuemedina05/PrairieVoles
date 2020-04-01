@@ -44,8 +44,10 @@ def get_pulse(number):
 	elapse = time.time() - start
 	
 	if GPIO.event_detected(hall):
+		print("FALLING EDGE")
 		handle_falling_edge()
 	else:
+		print("RISING EDGE")
 		handle_rising_edge()
 	
 	global elapse,distance,start,pulse,speed,rpm,multiplier
