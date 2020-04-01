@@ -7,6 +7,7 @@ daily_times = {}
 
 # Logic to read rfid
 def handle_tag():
+	return None
 
 # Logic to determine if rfid is triggered
 def triggered_rfid():
@@ -16,6 +17,8 @@ def generate_data():
 	"""
 		Logic to return final distance
 	"""
+	pass
+	
 import RP.GPIO as GPIO
 import time
 
