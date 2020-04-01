@@ -58,16 +58,16 @@ try:
 		multiplier = 3600/elapse
 		rpm = 1/elapse*60
 		speed = (wheel_c*multiplier)/(1000)
+		print('rpm{0:.2f} speed{1:.2f} distance{2} elapse{3:.4f} multiplier{4:.2f}'.format(rpm,speed,distance,elapse,multiplier))
+			time.sleep(0.1)
 
 		if speed < 1:
         		def get_distance():
 				return distance
         		print(str.format('{0:.2f}', distance), "Meters")
-        		print("MICE IS NO LONGER RUNNING. Previous total distance: %s" % str.format('{0:.2f}', distance))
-		else: 
-			print('rpm{0:.2f} speed{1:.2f} distance{2} elapse{3:.4f} multiplier{4:.2f}'.format(rpm,speed,distance,elapse,multiplier))
-			time.sleep(0.1)
-
+        		print("MICE IS NO LONGER RUNNING.")
+			break
+			
 except KeyboardInterrupt:
 	print('End of program')
 	GPIO.cleanup()
