@@ -55,7 +55,8 @@ try:
 	GPIO.add_event_detect(hall,GPIO.FALLING,callback = get_pulse,bouncetime=20)
 	  
 	while True:
-		print('rpm{0:.2f} speed{1:.2f} distance{2} elapse{3:.4f} multiplier{4:.2f}'.format(rpm,speed,distance,elapse,multiplier))
+		#print('rpm{0:.2f} speed{1:.2f} distance{2} elapse{3:.4f} multiplier{4:.2f}'.format(rpm,speed,distance,elapse,multiplier))
+		print("rmp:%s speed:%s pulse:%s", (rmp, speed, pulse))
 		time.sleep(0.1)
       		if speed < 1:
         		def get_distance():
