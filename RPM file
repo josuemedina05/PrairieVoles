@@ -28,35 +28,45 @@ def get_elapse():
 	return elapse
 def get_multiplier():
 	return multiplier
-def get_pulse(number):
-
-	global elapse,distance,start,pulse,speed,rpm,multiplier
-
-	cycle = 0
-	pulse += 1
-	cylce += 1
-	if pulse > 0:
-		elapse = time.time() - start
-		pulse -= 1
-	if cycle > 0:
-		distance += wheel_c
-		cycle -= 1
-	  
-	multiplier = 3600/elapse
-	speed = (wheel_c*multiplier)/1000
-	rpm = 1/elapse*60
-	  
+	
+	
+def handle_falling_edge():
 	start = time.time()
+	distance += wheel_c
+
+def handle_rising_edge():
+	pass 
+	
+
+def get_pulse(number):
+	global elapse,distance,start,pulse,speed,rpm,multiplier
+	
+	elapse = time.time() - start
+	
+	if GPIO.event_detected(hall):
+		handle_falling_edge()
+	else:
+		handle_rising_edge()
+	
+	global elapse,distance,start,pulse,speed,rpm,multiplier
+	elapse = time.time() - start  
+	multiplier = 3600/elapse
+	rpm = 1/elapse*60
+	speed = (wheel_c*multiplier)/(1000)
+	
 
 try:
 	print('Inializing speedometer')
 	time.sleep(1)
 	  
-	GPIO.add_event_detect(hall,GPIO.FALLING,callback = get_pulse,bouncetime=20)
+	GPIO.add_event_detect(hall,GPIO.BOTH,callback = get_pulse,bouncetime=20)
 	  
 	while True:
-		#print('rpm{0:.2f} speed{1:.2f} distance{2} elapse{3:.4f} multiplier{4:.2f}'.format(rpm,speed,distance,elapse,multiplier))
-		print("rmp:%s speed:%s pulse:%s" % (rmp, speed, pulse))
+		if GPIO.input(channel):
+    print('Input was HIGH')
+else:
+    print('Input was LOW')
+		print('rpm{0:.2f} speed{1:.2f} distance{2} elapse{3:.4f} multiplier{4:.2f}'.format(rpm,speed,distance,elapse,multiplier))
 		time.sleep(0.1)
       		if speed < 1:
         		def get_distance():
