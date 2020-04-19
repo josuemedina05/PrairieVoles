@@ -5,6 +5,7 @@ mice_dis = []
 daily_times = {}
 
 distance = 0
+start = 0
 
 
 # Logic to read rfid
@@ -37,13 +38,14 @@ def generate_data():
 
 	def get_pulse(number):
 		global distance
+		global start
 		start = time.time()
 		distance += wheel_c
 		
 	try:
 		print('Inializing speedometer')
 		time.sleep(1)
-		
+		global start 
 		start = time.time()	  
 		GPIO.add_event_detect(hall,GPIO.FALLING,callback = get_pulse,bouncetime=20)
 		
@@ -97,7 +99,7 @@ def main():
 		if curr_distance > 0:	
 			global distance
 			distance = 0
-			mice_dis.append(total_distance)
+			mice_dis.append(curr_distance)
 
 
 			# Time, Current distance, running sum
