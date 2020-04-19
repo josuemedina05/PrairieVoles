@@ -4,6 +4,9 @@ import datetime
 mice_dis = []
 daily_times = {}
 
+distance = 0
+
+
 # Logic to read rfid
 def handle_tag():
 	return None
@@ -21,7 +24,6 @@ def generate_data():
 	GPIO.setwarnings(True)
 
 	pulse = 0
-	distance = 0
 	rpm = 0
 	speed = 0
 	d = 0.12
@@ -93,6 +95,7 @@ def main():
 		curr_time = datetime.datetime.utcnow()
 
 		if curr_distance > 0:	
+			distance = 0
 			mice_dis.append(total_distance)
 
 
