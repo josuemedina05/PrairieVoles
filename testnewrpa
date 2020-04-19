@@ -52,9 +52,9 @@ def main():
 				print("MICE IS NO LONGER RUNNING.")
 				return distance
 			
-except KeyboardInterrupt:
-	print('End of program')
-	GPIO.cleanup()
+	except KeyboardInterrupt:
+		print('End of program')
+		GPIO.cleanup()
 
 
 if __name__ == '__main__':
