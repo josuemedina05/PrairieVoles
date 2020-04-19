@@ -95,6 +95,7 @@ def main():
 		curr_time = datetime.datetime.utcnow()
 
 		if curr_distance > 0:	
+			global distance
 			distance = 0
 			mice_dis.append(total_distance)
 
