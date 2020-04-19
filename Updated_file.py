@@ -32,14 +32,9 @@ def generate_data():
 
 
 	GPIO.setup(hall,GPIO.IN,pull_up_down = GPIO.PUD_UP)
-		
-		
-	def handle_falling_edge():
-		start = time.time()
-		distance += wheel_c
-
 
 	def get_pulse(number):
+		global distance
 		start = time.time()
 		distance += wheel_c
 		
@@ -71,8 +66,6 @@ def generate_data():
 	except KeyboardInterrupt:
 		print('End of program')
 		GPIO.cleanup()
-
-
 
 
 def write_to_file(data=None, final_recording=False): 
