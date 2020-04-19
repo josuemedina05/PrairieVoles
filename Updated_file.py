@@ -65,11 +65,14 @@ def generate_data():
 			if speed < 1:
 				print(str.format('{0:.2f}', distance), "Meters")
 				print("MICE IS NO LONGER RUNNING.")
+				GPIO.cleanup()
 				return distance
 			
 	except KeyboardInterrupt:
 		print('End of program')
 		GPIO.cleanup()
+
+
 
 
 def write_to_file(data=None, final_recording=False): 
@@ -87,20 +90,26 @@ def main():
 
 	# Want to be able to read indefinitely
 	while True:
-		
+
+
+		# TODO: Figure out how to trigger "rfid"
+
+
 		curr_distance = generate_data()
-		mice_dis.append(curr_distance)
-
 		# Gather current time and final running sum
-		curr_time = datatime.datetime.utcnow()
+		curr_time = datetime.datetime.utcnow()
 
-		# Time, Current distance, running sum
+		if curr_distance > 0:	
+			mice_dis.append(total_distance)
 
-		running_sum += curr_distance
-		curr_event = (curr_time, curr_distance, running_sum)
-		daily_mice_data.append(curr_event)
 
-		write_to_file(curr_event)
+			# Time, Current distance, running sum
+
+			running_sum += curr_distance
+			curr_data = (curr_time, curr_distance, running_sum)
+			daily_mice_data.append(curr_data)
+
+			write_to_file(curr_data)
 
 
 
