@@ -92,7 +92,7 @@ def main():
 		mice_dis.append(curr_distance)
 
 		# Gather current time and final running sum
-		curr_time = datatime.datetime.utcnow()
+		curr_time = datetime.datetime.utcnow()
 
 		# Time, Current distance, running sum
 
