@@ -89,18 +89,18 @@ def main():
 	while True:
 		
 		curr_distance = generate_data()
-		mice_dis.append(curr_distance)
-
 		# Gather current time and final running sum
-		curr_time = datatime.datetime.utcnow()
+		curr_time = datetime.datetime.utcnow()
+		
+		if curr_distance > 0:
+			mice_dis.append(curr_distance)
 
-		# Time, Current distance, running sum
+			# Time, Current distance, running sum
+			running_sum += curr_distance
+			curr_event = (curr_time, curr_distance, running_sum)
+			daily_mice_data.append(curr_event)
 
-		running_sum += curr_distance
-		curr_event = (curr_time, curr_distance, running_sum)
-		daily_mice_data.append(curr_event)
-
-		write_to_file(curr_event)
+			write_to_file(curr_event)
 
 
 
