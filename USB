@@ -1,0 +1,2 @@
+#how to open the USB Drive
+open("/media/pi/VOLE_DATA/Distance/.tx",'a')
