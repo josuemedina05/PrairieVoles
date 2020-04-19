@@ -1,15 +1,16 @@
-import RP.GPIO as GPIO
+import RPI.GPIO as GPIO
 import time
+import math
 
 GPIO.setmode(GPIO.BCM)
-GPIO.setwarnings(false)
+GPIO.setwarnings(True)
 
 pulse = 0
 distance = 0
 rpm = 0
 speed = 0
-r = 0.12
-wheel_c = 2*pi*r
+d = 0.12
+wheel_c = math.pi*d
 multiplier = 0
 hall = 18
 elapse = 0
