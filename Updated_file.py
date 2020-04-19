@@ -111,6 +111,7 @@ def main():
 			write_to_file(curr_data)
 			# Reset the data
 			distance = 0
+			curr_distance = 0 
 
 
 		# Ensure that we are only writing to file once # Reset value once we hit an hour mark that is not 12am
