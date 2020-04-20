@@ -75,8 +75,7 @@ def generate_data():
 def write_to_file(data=None, final_recording=False): 
 	with open("/media/pi/VOLE_DATA/Distance/Distances.txt", 'a') as file:
 		if not final_recording:
-			for instance in data:
-				file.write("Date: %s, Distance ran in session: %s, Total distance so far: %s" % (data[0], data[1], data[2]))
+			file.write("Date: %s, Distance ran in session: %s, Total distance so far: %s" % (data[0], data[1], data[2]))
 		else:
 			file.write("Final distance for %s is: %s" % (data[0], data[1]))
 
