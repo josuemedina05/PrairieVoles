@@ -76,9 +76,9 @@ def write_to_file(data=None, final_recording=False, curr_time=None):
 	file_name = "/media/pi/VOLE_DATA/Distance/Distances_%s_%s_%s.txt" % (curr_time.month, curr_time.day, curr_time.year)
 	with open(file_name, 'a') as file:
 		if not final_recording:
-			file.write("Date: %s, Distance ran in session: %s, Total distance so far: %s" % (data[0], data[1], data[2]))
+			file.write("Date: %s, Distance ran in session: %s, Total distance so far: %s \n" % (data[0], data[1], data[2]))
 		else:
-			file.write("Final distance for %s is: %s" % (data[0], data[1]))
+			file.write("Final distance for %s is: %s \n" % (data[0], data[1]))
 
 def main():
 	already_recorded = False
