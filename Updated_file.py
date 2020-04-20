@@ -73,7 +73,7 @@ def generate_data():
 
 
 def write_to_file(data=None, final_recording=False, curr_time=None): 
-	file_name = "/media/pi/VOLE_DATA/Distance/Distances_%s.txt" % (curr_time)
+	file_name = "/media/pi/VOLE_DATA/Distance/Distances_%s_%s_%s.txt" % (curr_time.month, curr_time.day, curr_time.year)
 	with open(file_name, 'a') as file:
 		if not final_recording:
 			file.write("Date: %s, Distance ran in session: %s, Total distance so far: %s" % (data[0], data[1], data[2]))
@@ -94,7 +94,7 @@ def main():
 
 		curr_distance = generate_data()
 		# Gather current time and final running sum
-		curr_time = datetime.datetime.utcnow()
+		curr_time = datetime.datetime.now()
 
 		if curr_distance > 0:	
 			global distance
