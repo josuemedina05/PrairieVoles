@@ -43,6 +43,8 @@ def generate_data():
 		distance += wheel_c
 		
 	try:
+		global distance
+		distance = 0
 		print('Inializing speedometer')
 		time.sleep(1)
 		global start 
@@ -93,6 +95,7 @@ def main():
 		# Gather current time and final running sum
 		curr_time = datetime.datetime.now()
 
+		
 		if distance > 0:	
 			curr_distance = distance
 			mice_dis.append(curr_distance)
