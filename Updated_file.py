@@ -74,6 +74,7 @@ def generate_data():
 	except KeyboardInterrupt:
 		print('End of program')
 		GPIO.cleanup()
+		sys.exit()
 
 
 def write_to_file(data=None, final_recording=False, curr_time=None): 
