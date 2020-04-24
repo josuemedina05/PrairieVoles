@@ -40,6 +40,7 @@ def generate_data():
 		global start
 		global distance
 		start = time.time()
+		print("Before adding the wheel current distance: %s " % distance)
 		distance += wheel_c
 		
 	try:
