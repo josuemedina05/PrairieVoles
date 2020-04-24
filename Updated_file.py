@@ -59,6 +59,7 @@ def generate_data():
 			multiplier = 3600/elapse
 			rpm = 1/elapse*60
 			speed = (wheel_c*multiplier)/(1000)
+			
 
 			print('rpm{0:.2f} speed{1:.2f} distance{2} elapse{3:.4f} multiplier{4:.2f}'.format(rpm,speed,distance,elapse,multiplier))
 			time.sleep(0.1)
@@ -97,6 +98,7 @@ def main():
 
 		
 		if distance > 0:	
+			print("Found a distance")
 			curr_distance = distance
 			mice_dis.append(curr_distance)
 
@@ -109,8 +111,11 @@ def main():
 
 			write_to_file(curr_data, False, curr_time)
 			# Reset the data
+			
+			print("distance before reset: %s " % distance)
 			distance = 0
 			curr_distance = 0 
+			print("distance has been reset: %s " % distance)
 
 
 		# Ensure that we are only writing to file once # Reset value once we hit an hour mark that is not 12am
