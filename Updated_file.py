@@ -83,21 +83,17 @@ def main():
 	already_recorded = False
 	running_sum = 0
 	daily_mice_data = [] # Tuple : Time, current distance, total distance for the current day**	
+	global distance
 
 	# Want to be able to read indefinitely
 	while True:
-
-
 		# TODO: Figure out how to trigger "rfid"
-
-
 		curr_distance = generate_data()
 		# Gather current time and final running sum
 		curr_time = datetime.datetime.now()
 
-		if curr_distance > 0:	
-			global distance
-			
+		if distance > 0:	
+			curr_distance = distance
 			mice_dis.append(curr_distance)
 
 
