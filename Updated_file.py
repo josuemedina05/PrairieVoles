@@ -32,15 +32,14 @@ def generate_data():
 	multiplier = 0
 	hall = 18
 	elapse = 0
-
+	curr_distance = 0
 
 	GPIO.setup(hall,GPIO.IN,pull_up_down = GPIO.PUD_UP)
 
 	def get_pulse(number):
-		global distance
 		global start
 		start = time.time()
-		distance += wheel_c
+		curr_distance += wheel_c
 		
 	try:
 		print('Inializing speedometer')
@@ -58,14 +57,14 @@ def generate_data():
 			rpm = 1/elapse*60
 			speed = (wheel_c*multiplier)/(1000)
 
-			print('rpm{0:.2f} speed{1:.2f} distance{2} elapse{3:.4f} multiplier{4:.2f}'.format(rpm,speed,distance,elapse,multiplier))
+			print('rpm{0:.2f} speed{1:.2f} distance{2} elapse{3:.4f} multiplier{4:.2f}'.format(rpm,speed,curr_distance,elapse,multiplier))
 			time.sleep(0.1)
 
 			if speed < 1:
 				print(str.format('{0:.2f}', distance), "Meters")
 				print("MICE IS NO LONGER RUNNING.")
 				GPIO.cleanup()
-				return distance
+				return curr_distance
 			
 	except KeyboardInterrupt:
 		print('End of program')
